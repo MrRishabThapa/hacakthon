@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { Moon, Sun, Menu, X, User, LogOut } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { RootState } from '@/store';
-import { toggleTheme } from '@/store/slices/themeSlice';
-import { logout } from '@/store/slices/authSlice';
-import logo from '@/assets/logo.png';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Moon, Sun, Menu, X, User, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { RootState } from "@/store";
+import { toggleTheme } from "@/store/slices/themeSlice";
+import { logout } from "@/store/slices/authSlice";
+import logo from "@/assets/logo.png";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
   const { mode } = useSelector((state: RootState) => state.theme);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/booking' },
-    { name: 'Explore', path: '/explore' },
-    { name: 'Hunt', path: '/hunt' },
-    { name: 'Leaderboard', path: '/leaderboard' },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/booking" },
+    { name: "Explore", path: "/explore" },
+    { name: "Hunt", path: "/hunt" },
+    { name: "Leaderboard", path: "/leaderboard" },
   ];
 
   const handleLogout = () => {
@@ -30,7 +32,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 w-full h-24  border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Left side navigation */}
@@ -40,7 +42,9 @@ export default function Navbar() {
                 key={item.name}
                 to={item.path}
                 className={`transition-colors hover:text-primary ${
-                  location.pathname === item.path ? 'text-primary font-medium' : 'text-foreground/80'
+                  location.pathname === item.path
+                    ? "text-primary font-medium"
+                    : "text-foreground/80"
                 }`}
               >
                 {item.name}
@@ -50,10 +54,7 @@ export default function Navbar() {
 
           {/* Center logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="TreasureNepal" className="h-10 w-10" />
-            <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              TreasureNepal
-            </span>
+            <img src={logo} alt="TreasureNepal" className=" mt-1 h-24 w-24" />
           </Link>
 
           {/* Right side navigation */}
@@ -63,13 +64,15 @@ export default function Navbar() {
                 key={item.name}
                 to={item.path}
                 className={`transition-colors hover:text-primary ${
-                  location.pathname === item.path ? 'text-primary font-medium' : 'text-foreground/80'
+                  location.pathname === item.path
+                    ? "text-primary font-medium"
+                    : "text-foreground/80"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            
+
             {/* Theme toggle */}
             <Button
               variant="ghost"
@@ -77,13 +80,19 @@ export default function Navbar() {
               onClick={() => dispatch(toggleTheme())}
               className="text-foreground/80 hover:text-primary"
             >
-              {mode === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+              {mode === "light" ? (
+                <Moon className="h-5 w-5" />
+              ) : (
+                <Sun className="h-5 w-5" />
+              )}
             </Button>
 
             {/* Auth buttons */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-foreground/80">Hi, {user?.name}</span>
+                <span className="text-sm text-foreground/80">
+                  Hi, {user?.name}
+                </span>
                 <Button variant="ghost" size="icon" onClick={handleLogout}>
                   <LogOut className="h-5 w-5" />
                 </Button>
@@ -107,7 +116,11 @@ export default function Navbar() {
             className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
 
@@ -121,15 +134,15 @@ export default function Navbar() {
                   to={item.path}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     location.pathname === item.path
-                      ? 'text-primary bg-primary/10'
-                      : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      ? "text-primary bg-primary/10"
+                      : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              
+
               <div className="px-3 py-2 flex items-center justify-between">
                 <span className="text-sm text-foreground/80">Theme</span>
                 <Button
@@ -138,14 +151,24 @@ export default function Navbar() {
                   onClick={() => dispatch(toggleTheme())}
                   className="text-foreground/80"
                 >
-                  {mode === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+                  {mode === "light" ? (
+                    <Moon className="h-5 w-5" />
+                  ) : (
+                    <Sun className="h-5 w-5" />
+                  )}
                 </Button>
               </div>
 
               {isAuthenticated ? (
                 <div className="px-3 py-2 space-y-2">
-                  <div className="text-sm text-foreground/80">Hi, {user?.name}</div>
-                  <Button variant="ghost" onClick={handleLogout} className="w-full justify-start">
+                  <div className="text-sm text-foreground/80">
+                    Hi, {user?.name}
+                  </div>
+                  <Button
+                    variant="ghost"
+                    onClick={handleLogout}
+                    className="w-full justify-start"
+                  >
                     <LogOut className="h-4 w-4 mr-2" />
                     Logout
                   </Button>
@@ -153,10 +176,14 @@ export default function Navbar() {
               ) : (
                 <div className="px-3 py-2 space-y-2">
                   <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button variant="ghost" className="w-full">Login</Button>
+                    <Button variant="ghost" className="w-full">
+                      Login
+                    </Button>
                   </Link>
                   <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button variant="hero" className="w-full">Sign Up</Button>
+                    <Button variant="hero" className="w-full">
+                      Sign Up
+                    </Button>
                   </Link>
                 </div>
               )}

@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Play } from 'lucide-react';
-import heroImage from '@/assets/hero-bg.jpg';
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play } from "lucide-react";
+import heroImage from "@/assets/hero-bg.jpg";
 
 export default function Hero() {
   return (
@@ -19,15 +19,15 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Discover the
+          Your Adventure,
           <span className="block bg-gradient-sunset bg-clip-text text-transparent">
-            Treasures of Nepal
+            Your Game
           </span>
         </h1>
-        
+
         <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
-          Embark on extraordinary adventures through ancient temples, majestic mountains, 
-          and hidden gems waiting to be discovered.
+          Embark on extraordinary adventures through ancient temples, majestic
+          mountains, and hidden gems waiting to be discovered.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -37,9 +37,13 @@ export default function Hero() {
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
-          
+
           <Link to="/about">
-            <Button variant="outline" size="xl" className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm">
+            <Button
+              variant="outline"
+              size="xl"
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
+            >
               <Play className="mr-2 h-5 w-5" />
               Learn More
             </Button>
