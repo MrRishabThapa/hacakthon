@@ -113,12 +113,12 @@ export default function Home() {
                     <Calendar className="h-8 w-8 text-primary" />
                     <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                   </div>
-                  <CardTitle className="text-2xl">Book Your Trip</CardTitle>
+                  <CardTitle className="text-2xl">Book Your Service</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">
-                    Plan your perfect Nepal adventure with our easy booking system. 
-                    Choose from curated experiences and destinations.
+                    Plan your perfect Nepal adventure or rent our luxury vans. 
+                    Choose from curated experiences, destinations, and premium transport.
                   </CardDescription>
                 </CardContent>
               </Link>
