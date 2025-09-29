@@ -3,6 +3,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useDispatch } from "react-redux";
+import Dexule from "@/assets/deluxe.jpg";
+import Economy from "@/assets/economy.jpg";
+import Luxury from "@/assets/luxury-van.jpg";
+import Standard from "@/assets/standard.jpg";
+import Pokhara from "@/assets/pokhara.jpg";
+import Everest from "@/assets/Everest.png";
+import Langtang from "@/assets/langtang.jpg";
+import Chitwan from "@/assets/chitwan.jpg";
+import Annapurna from "@/assets/annapurna.jpeg";
+import Ktm from "@/assets/ktm.jpg";
 import {
   Card,
   CardContent,
@@ -42,20 +52,17 @@ import {
   Users,
   Star,
   Clock,
-  DollarSign,
+  Car,
   Mountain,
   Camera,
   Compass,
-  Car,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const bookingSchema = z.object({
   place: z.string().min(1, "Please select a destination"),
-  date: z.date({
-    required_error: "Please select a date",
-  }),
+  date: z.date({ required_error: "Please select a date" }),
   people: z
     .number()
     .min(1, "Must be at least 1 person")
@@ -76,7 +83,7 @@ const destinations = [
     difficulty: "Hard",
     price: 100000,
     rating: 4.9,
-    image: "/placeholder.svg",
+    image: Everest,
     description:
       "The ultimate trekking adventure to the base of the world's highest mountain.",
     highlights: ["Namche Bazaar", "Tengboche Monastery", "Kala Patthar"],
@@ -89,7 +96,7 @@ const destinations = [
     difficulty: "Medium",
     price: 50000,
     rating: 4.8,
-    image: "/placeholder.svg",
+    image: Annapurna,
     description:
       "Classic trek through diverse landscapes and traditional villages.",
     highlights: ["Thorong La Pass", "Muktinath Temple", "Poon Hill"],
@@ -102,7 +109,7 @@ const destinations = [
     difficulty: "Easy",
     price: 25700,
     rating: 4.7,
-    image: "/placeholder.svg",
+    image: Chitwan,
     description: "Wildlife adventure in one of Nepal's premier national parks.",
     highlights: ["Rhino Spotting", "Elephant Safari", "Bird Watching"],
   },
@@ -114,7 +121,7 @@ const destinations = [
     difficulty: "Easy",
     price: 29500,
     rating: 4.6,
-    image: "/placeholder.svg",
+    image: Pokhara,
     description:
       "Perfect blend of adventure and relaxation by beautiful lakes.",
     highlights: ["Phewa Lake", "Paragliding", "Sarangkot Sunrise"],
@@ -127,7 +134,7 @@ const destinations = [
     difficulty: "Medium",
     price: 23000,
     rating: 4.5,
-    image: "/placeholder.svg",
+    image: Langtang,
     description:
       "Beautiful valley trek with stunning mountain views and Tamang culture.",
     highlights: ["Kyanjin Gompa", "Cheese Factory", "Mountain Views"],
@@ -140,7 +147,7 @@ const destinations = [
     difficulty: "Easy",
     price: 15500,
     rating: 4.4,
-    image: "/placeholder.svg",
+    image: Ktm,
     description:
       "Explore ancient temples, palaces, and UNESCO World Heritage sites.",
     highlights: ["Durbar Square", "Swayambhunath", "Boudhanath"],
@@ -156,7 +163,7 @@ const luxuryVans = [
     features: ["AC/Heater", "Leather Seats", "WiFi", "Entertainment System"],
     pricePerDay: 15000,
     rating: 4.9,
-    image: "/placeholder.svg",
+    image: Luxury,
     description:
       "Top-tier luxury van with premium amenities for the ultimate travel experience.",
     highlights: ["Premium Sound System", "Panoramic Windows", "Mini Bar"],
@@ -169,7 +176,7 @@ const luxuryVans = [
     features: ["AC", "Comfortable Seats", "Music System", "Phone Charging"],
     pricePerDay: 10000,
     rating: 4.7,
-    image: "/placeholder.svg",
+    image: Dexule,
     description:
       "Comfortable deluxe van perfect for group travel with modern amenities.",
     highlights: ["Spacious Interior", "Good Sound System", "USB Charging"],
@@ -182,7 +189,7 @@ const luxuryVans = [
     features: ["Basic AC", "Standard Seats", "Radio", "Storage Space"],
     pricePerDay: 7000,
     rating: 4.4,
-    image: "/placeholder.svg",
+    image: Standard,
     description:
       "Reliable standard van for budget-conscious travelers without compromising safety.",
     highlights: ["Reliable Engine", "Good Mileage", "Spacious"],
@@ -195,7 +202,7 @@ const luxuryVans = [
     features: ["Fan", "Basic Seats", "Radio"],
     pricePerDay: 4500,
     rating: 4.0,
-    image: "/placeholder.svg",
+    image: Economy,
     description:
       "Budget-friendly option for large groups looking for basic transportation.",
     highlights: ["Large Capacity", "Budget Friendly", "Basic Comfort"],
@@ -217,13 +224,7 @@ export default function Booking() {
 
   const form = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      place: "",
-      people: 1,
-      name: "",
-      email: "",
-      phone: "",
-    },
+    defaultValues: { place: "", people: 1, name: "", email: "", phone: "" },
   });
 
   const onSubmit = (data: BookingFormData) => {
@@ -303,9 +304,8 @@ export default function Booking() {
             Book Your Service
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Choose Your Nepal
+            Choose Your Nepal{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
-              {" "}
               Experience
             </span>
           </h1>
@@ -315,7 +315,6 @@ export default function Booking() {
           </p>
         </div>
 
-        {/* Service Tabs */}
         <div className="flex space-x-1 bg-muted p-1 rounded-lg mb-8 max-w-md mx-auto">
           <Button
             variant={activeTab === "destinations" ? "default" : "ghost"}
@@ -326,8 +325,7 @@ export default function Booking() {
               form.setValue("place", "");
             }}
           >
-            <Mountain className="h-4 w-4 mr-2" />
-            Adventure Packages
+            <Mountain className="h-4 w-4 mr-2" /> Adventure Packages
           </Button>
           <Button
             variant={activeTab === "vans" ? "default" : "ghost"}
@@ -338,13 +336,11 @@ export default function Booking() {
               form.setValue("place", "");
             }}
           >
-            <Car className="h-4 w-4 mr-2" />
-            Luxury Van Rental
+            <Car className="h-4 w-4 mr-2" /> Luxury Van Rental
           </Button>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Services Grid */}
           <div className="lg:col-span-2 space-y-6">
             <h2 className="text-2xl font-bold">
               {activeTab === "destinations"
@@ -352,20 +348,28 @@ export default function Booking() {
                 : "Luxury Van Fleet"}
             </h2>
 
-            {activeTab === "destinations" ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {destinations.map((destination) => (
+            <div className="grid md:grid-cols-2 gap-6">
+              {(activeTab === "destinations" ? destinations : luxuryVans).map(
+                (item) => (
                   <Card
-                    key={destination.id}
+                    key={item.id}
                     className={`cursor-pointer transition-all duration-300 hover:shadow-medium ${
-                      selectedDestination?.id === destination.id
+                      (activeTab === "destinations"
+                        ? selectedDestination?.id
+                        : selectedVan?.id) === item.id
                         ? "ring-2 ring-primary shadow-medium"
                         : ""
                     }`}
                     onClick={() => {
-                      setSelectedDestination(destination);
-                      setSelectedVan(null);
-                      form.setValue("place", destination.name);
+                      if (activeTab === "destinations") {
+                        setSelectedDestination(item);
+                        setSelectedVan(null);
+                        form.setValue("place", item.name);
+                      } else {
+                        setSelectedVan(item);
+                        setSelectedDestination(null);
+                        form.setValue("place", item.name);
+                      }
                     }}
                   >
                     <CardHeader className="pb-4">
@@ -373,46 +377,77 @@ export default function Booking() {
                         <Badge
                           className={cn(
                             "text-white",
-                            getDifficultyColor(destination.difficulty)
+                            activeTab === "destinations"
+                              ? getDifficultyColor(item.difficulty)
+                              : getVanTypeColor(item.type)
                           )}
                         >
-                          {getDifficultyIcon(destination.difficulty)}
-                          <span className="ml-1">{destination.difficulty}</span>
+                          {activeTab === "destinations" ? (
+                            getDifficultyIcon(item.difficulty)
+                          ) : (
+                            <Car className="h-4 w-4 mr-1" />
+                          )}
+                          <span className="ml-1">
+                            {activeTab === "destinations"
+                              ? item.difficulty
+                              : item.type}
+                          </span>
                         </Badge>
                         <div className="flex items-center space-x-1">
                           <Star className="h-4 w-4 fill-accent text-accent" />
                           <span className="text-sm font-medium">
-                            {destination.rating}
+                            {item.rating}
                           </span>
                         </div>
                       </div>
-                      <CardTitle className="text-xl">
-                        {destination.name}
-                      </CardTitle>
-                      <CardDescription className="flex items-center space-x-4 text-sm">
-                        <span className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          {destination.location}
-                        </span>
-                        <span className="flex items-center">
-                          <Clock className="h-4 w-4 mr-1" />
-                          {destination.duration}
-                        </span>
-                      </CardDescription>
+                      <CardTitle className="text-xl">{item.name}</CardTitle>
+                      {activeTab === "destinations" && (
+                        <CardDescription className="flex items-center space-x-4 text-sm">
+                          <span className="flex items-center">
+                            <MapPin className="h-4 w-4 mr-1" />
+                            {item.location}
+                          </span>
+                          <span className="flex items-center">
+                            <Clock className="h-4 w-4 mr-1" />
+                            {item.duration}
+                          </span>
+                        </CardDescription>
+                      )}
+                      {activeTab === "vans" && (
+                        <CardDescription className="flex items-center space-x-4 text-sm">
+                          <span className="flex items-center">
+                            <Users className="h-4 w-4 mr-1" />
+                            {item.capacity}
+                          </span>
+                        </CardDescription>
+                      )}
                     </CardHeader>
+
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                    />
 
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
-                        {destination.description}
+                        {item.description}
                       </p>
 
                       <div className="space-y-3">
                         <div>
-                          <h4 className="font-medium mb-2">Highlights:</h4>
+                          <h4 className="font-medium mb-2">
+                            {activeTab === "destinations"
+                              ? "Highlights:"
+                              : "Features:"}
+                          </h4>
                           <div className="flex flex-wrap gap-2">
-                            {destination.highlights.map((highlight, index) => (
+                            {(activeTab === "destinations"
+                              ? item.highlights
+                              : item.features
+                            ).map((highlight, idx) => (
                               <Badge
-                                key={index}
+                                key={idx}
                                 variant="outline"
                                 className="text-xs"
                               >
@@ -421,115 +456,41 @@ export default function Booking() {
                             ))}
                           </div>
                         </div>
-
+                        {activeTab === "vans" && (
+                          <div>
+                            <h4 className="font-medium mb-2">Highlights:</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {item.highlights.map((h, idx) => (
+                                <Badge
+                                  key={idx}
+                                  variant="outline"
+                                  className="text-xs"
+                                >
+                                  {h}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         <div className="flex items-center justify-between pt-2 border-t">
                           <span className="text-2xl font-bold text-primary flex items-center">
                             <span className="text-sm mr-1">Rs</span>
-                            {destination.price.toLocaleString()}
+                            {activeTab === "destinations"
+                              ? item.price.toLocaleString()
+                              : item.pricePerDay.toLocaleString()}
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            per person
+                            {activeTab === "destinations"
+                              ? "per person"
+                              : "per day"}
                           </span>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-6">
-                {luxuryVans.map((van) => (
-                  <Card
-                    key={van.id}
-                    className={`cursor-pointer transition-all duration-300 hover:shadow-medium ${
-                      selectedVan?.id === van.id
-                        ? "ring-2 ring-primary shadow-medium"
-                        : ""
-                    }`}
-                    onClick={() => {
-                      setSelectedVan(van);
-                      setSelectedDestination(null);
-                      form.setValue("place", van.name);
-                    }}
-                  >
-                    <CardHeader className="pb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge
-                          className={cn(
-                            "text-white",
-                            getVanTypeColor(van.type)
-                          )}
-                        >
-                          <Car className="h-4 w-4 mr-1" />
-                          {van.type}
-                        </Badge>
-                        <div className="flex items-center space-x-1">
-                          <Star className="h-4 w-4 fill-accent text-accent" />
-                          <span className="text-sm font-medium">
-                            {van.rating}
-                          </span>
-                        </div>
-                      </div>
-                      <CardTitle className="text-xl">{van.name}</CardTitle>
-                      <CardDescription className="flex items-center space-x-4 text-sm">
-                        <span className="flex items-center">
-                          <Users className="h-4 w-4 mr-1" />
-                          {van.capacity}
-                        </span>
-                      </CardDescription>
-                    </CardHeader>
-
-                    <CardContent>
-                      <p className="text-muted-foreground mb-4">
-                        {van.description}
-                      </p>
-
-                      <div className="space-y-3">
-                        <div>
-                          <h4 className="font-medium mb-2">Features:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {van.features.map((feature, index) => (
-                              <Badge
-                                key={index}
-                                variant="outline"
-                                className="text-xs"
-                              >
-                                {feature}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="font-medium mb-2">Highlights:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {van.highlights.map((highlight, index) => (
-                              <Badge
-                                key={index}
-                                variant="outline"
-                                className="text-xs"
-                              >
-                                {highlight}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2 border-t">
-                          <span className="text-2xl font-bold text-primary flex items-center">
-                            <span className="text-sm mr-1">Rs</span>
-                            {van.pricePerDay.toLocaleString()}
-                          </span>
-                          <span className="text-sm text-muted-foreground">
-                            per day
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
+                )
+              )}
+            </div>
           </div>
 
           {/* Booking Form */}
@@ -551,70 +512,7 @@ export default function Booking() {
                       } to continue`}
                 </CardDescription>
               </CardHeader>
-
               <CardContent>
-                {(selectedDestination || selectedVan) && (
-                  <div className="mb-6 p-4 bg-muted/50 rounded-lg">
-                    <h3 className="font-semibold mb-2">
-                      {(selectedDestination || selectedVan)?.name}
-                    </h3>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      {selectedDestination && (
-                        <>
-                          <div className="flex items-center justify-between">
-                            <span>Duration:</span>
-                            <span>{selectedDestination.duration}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span>Difficulty:</span>
-                            <Badge
-                              className={cn(
-                                "text-white text-xs",
-                                getDifficultyColor(
-                                  selectedDestination.difficulty
-                                )
-                              )}
-                            >
-                              {selectedDestination.difficulty}
-                            </Badge>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span>Price per person:</span>
-                            <span className="font-semibold">
-                              Rs {selectedDestination.price.toLocaleString()}
-                            </span>
-                          </div>
-                        </>
-                      )}
-                      {selectedVan && (
-                        <>
-                          <div className="flex items-center justify-between">
-                            <span>Capacity:</span>
-                            <span>{selectedVan.capacity}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span>Type:</span>
-                            <Badge
-                              className={cn(
-                                "text-white text-xs",
-                                getVanTypeColor(selectedVan.type)
-                              )}
-                            >
-                              {selectedVan.type}
-                            </Badge>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span>Price per day:</span>
-                            <span className="font-semibold">
-                              Rs {selectedVan.pricePerDay.toLocaleString()}
-                            </span>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                )}
-
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
