@@ -6,7 +6,6 @@ import heroImage from "@/assets/hero-bg.jpg";
 export default function Hero() {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -16,7 +15,6 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           Your Adventure,
@@ -61,13 +59,12 @@ export default function Hero() {
             <div className="text-sm text-white/80">Happy Travelers</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold">5★</div>
+            <div className="text-3xl font-bold">4.9★</div>
             <div className="text-sm text-white/80">Rating</div>
           </div>
         </div>
       </div>
 
-      {/* Floating elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-hero rounded-full opacity-20 animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-16 h-16 bg-gradient-sunset rounded-full opacity-30 animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 right-20 w-12 h-12 bg-adventure rounded-full opacity-25 animate-pulse delay-500"></div>

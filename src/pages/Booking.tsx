@@ -79,9 +79,9 @@ const destinations = [
     id: "everest-base-camp",
     name: "Everest Base Camp Trek",
     location: "Khumbu Valley",
-    duration: "14 Days",
+    duration: "5 Days",
     difficulty: "Hard",
-    price: 100000,
+    price: 80000,
     rating: 4.9,
     image: Everest,
     description:

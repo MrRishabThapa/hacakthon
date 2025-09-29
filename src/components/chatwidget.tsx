@@ -1,16 +1,5 @@
 import { useState } from "react";
-import {
-  BotMessageSquare,
-  X,
-  Send,
-  Rocket,
-  MapPin,
-  Star,
-  Mountain,
-  TreePine,
-  Building,
-  Camera,
-} from "lucide-react";
+import { BotMessageSquare, X, Send, Rocket } from "lucide-react";
 
 type Message = { type: "user" | "bot"; content: string };
 
@@ -176,6 +165,12 @@ export default function RocketChat() {
       ) {
         botReply =
           "Hey hey! I’m Rocket 🚀, your witty travel buddy. Which type of travel excites you the most: Adventure, Cultural, Traditional, or Nature?";
+      } else if (
+        userMsg.content.toLowerCase().includes("who are you") ||
+        userMsg.content.toLowerCase().includes("who made you")
+      ) {
+        botReply =
+          "I’m <strong>Rocket 🚀</strong> — your cheeky travel sidekick! I was built by <strong>TeamRocket</strong> hehehe *evil laugh* 😈✨";
       } else if (userMsg.content.toLowerCase().includes("thank")) {
         botReply =
           "Aww, you’re welcome! 😎💫 Do you want more travel tips or secret spots in Nepal?";
