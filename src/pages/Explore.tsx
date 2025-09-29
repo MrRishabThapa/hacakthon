@@ -33,7 +33,7 @@ import gosaikundaImg from "@/assets/gosaikunda.jpg";
 import rupseImg from "@/assets/rupse.jpg";
 import khaptadImg from "@/assets/khaptad.jpg";
 import raraImg from "@/assets/Rara-lake-view.jpg";
-import chisapaniImg from "@/assets/kali.jpeg";
+import chisapaniImg from "@/assets/chisapani.jpg";
 import tinjureImg from "@/assets/tinjure.jpg";
 import rangbhangImg from "@/assets/rangbhang.jpg";
 import barunImg from "@/assets/barun.png";
